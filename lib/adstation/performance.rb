@@ -13,7 +13,7 @@ module Adstation
     delegate :[], to: :records
 
     URL  = "http://api.publisher.adknowledge.com/performance"
-    BASE = {token: Adstation.token}
+
     VALID_MEASURES = [
       :revenue, :schedules, :clicks, :paid_clicks, :valid_clicks,
       :invalid_clicks, :test_clicks, :domestic_paid_clicks,
@@ -143,7 +143,7 @@ module Adstation
     end
 
     def query_params
-      p = BASE.merge(filter_params).
+      p = base_params.merge(filter_params).
         merge(options_params).
         merge(pivot_params)
       p.merge!(measures: measures_param) unless measures.empty?
@@ -159,6 +159,10 @@ module Adstation
 
     private
 
+    def base_params
+      {token: Adstation.token}
+    end
+
     def results
       @results ||= conn.get do |req|
         req.url "/performance", query_params
@@ -167,7 +171,7 @@ module Adstation
 
     def conn
       @conn ||= Faraday.new(:url => URL) do |b|
-        b.response :json
+        b.response :oj
         b.adapter  Faraday.default_adapter
       end
     end

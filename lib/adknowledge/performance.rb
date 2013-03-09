@@ -3,7 +3,7 @@ require "faraday_middleware"
 require "faraday_middleware/parse_oj"
 require "active_support/core_ext/module/delegation"
 
-module Adstation
+module Adknowledge
   class Performance
     include Enumerable
 
@@ -28,7 +28,7 @@ module Adstation
 
     VALID_DIMENSIONS = [
       :product_guid, :report_date, :report_hour, :report_30min, :report_15min,
-      :is_accrued, :revenue_type, :source_product_guid, :list_id,
+      :is_accrued, :revenue_type, :source_product_guid, :list_id, :product_id,
       :source_account_name, :domain_group_id, :domain_group, :report_time,
       :subid, :country_cd, :accrual_date, :suppress_date, :suppress_md5,
       :suppress_type
@@ -41,7 +41,7 @@ module Adstation
     def initialize
       @measures   = {}
       @dimensions = {}
-      @filter     = {}
+      @filter     = {product_guid: "*"}
       @options    = {}
       @pivot_options = {}
     end
@@ -57,6 +57,7 @@ module Adstation
     end
 
     def select *selection
+      selection = selection.map{|x| x.to_sym} # handle strings & symbols equally
       unless (selection - VALID_MEASURES).empty?
         raise ArgumentError, "Invalid measurement selection"
       end
@@ -65,6 +66,7 @@ module Adstation
     end
 
     def group_by *groupings
+      groupings = groupings.map{|x| x.to_sym} # handle strings & symbols equally
       unless (groupings - VALID_DIMENSIONS).empty?
         raise ArgumentError, "Invalid dimension grouping"
       end
@@ -153,6 +155,9 @@ module Adstation
     end
 
     def records
+      unless Adknowledge.token
+        raise ArgumentError, "Adknowledge token required to perform queries"
+      end
       results.body["data"] if results.body.has_key?("data")
     end
 
@@ -160,7 +165,7 @@ module Adstation
     private
 
     def base_params
-      {token: Adstation.token}
+      {token: Adknowledge.token}
     end
 
     def results

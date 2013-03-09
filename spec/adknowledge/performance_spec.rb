@@ -1,8 +1,8 @@
 require "spec_helper"
 
-describe Adstation::Performance do
+describe Adknowledge::Performance do
   before do
-    Adstation.token = "9befb0d563b499cbe705f4110d472c85"
+    Adknowledge.token = "9befb0d563b499cbe705f4110d472c85"
   end
 
   context "#select" do
@@ -72,8 +72,8 @@ describe Adstation::Performance do
       expect{
         subject.where(start_date:0)
       }.to change(subject, :filter).
-           from({}).
-           to({start_date:"0"})
+           from({product_guid: "*"}).
+           to({product_guid: "*", start_date:"0"})
     end
 
     it "supports chained filtering" do
@@ -81,8 +81,8 @@ describe Adstation::Performance do
       expect{
         subject.where(domain_group:"AOL Group")
       }.to change(subject, :filter).
-           from({start_date:"0"}).
-           to({start_date:"0", domain_group:"AOL Group"})
+           from({product_guid: "*",start_date:"0"}).
+           to({product_guid: "*",start_date:"0", domain_group:"AOL Group"})
     end
 
     it "errors on invalid filter" do
@@ -102,7 +102,7 @@ describe Adstation::Performance do
     it "supports chaining" do
       expect(
         subject.limit(10)
-      ).to be_a Adstation::Performance
+      ).to be_a Adknowledge::Performance
     end
 
     it "errors on invalid limit" do
@@ -122,7 +122,7 @@ describe Adstation::Performance do
     it "supports chaining" do
       expect(
         subject.sort(5)
-      ).to be_a Adstation::Performance
+      ).to be_a Adknowledge::Performance
     end
 
     it "errors on invalid sort" do
@@ -142,7 +142,7 @@ describe Adstation::Performance do
     it "supports chaining" do
       expect(
         subject.full(false)
-      ).to be_a Adstation::Performance
+      ).to be_a Adknowledge::Performance
     end
 
     it "errors on invalid full" do
@@ -162,7 +162,7 @@ describe Adstation::Performance do
     it "supports chaining" do
       expect(
         subject.nocache(false)
-      ).to be_a Adstation::Performance
+      ).to be_a Adknowledge::Performance
     end
 
     it "errors on invalid nocache" do
@@ -182,7 +182,7 @@ describe Adstation::Performance do
     it "supports chaining" do
       expect(
         subject.display_all(false)
-      ).to be_a Adstation::Performance
+      ).to be_a Adknowledge::Performance
     end
 
     it "errors on invalid display_all" do
@@ -239,7 +239,7 @@ describe Adstation::Performance do
   end # #pivot
 
   context "#query_params" do
-    let(:performance) do
+    let :performance do
       described_class.new.where(start_date:1).
         select(:revenue,:paid_clicks).
         group_by(:subid, :report_date).
@@ -251,7 +251,7 @@ describe Adstation::Performance do
         limit(20)
     end
 
-    let(:query_params) do
+    let :query_params do
       { token:"9befb0d563b499cbe705f4110d472c85",
         start_date:1,
         measures:"revenue,paid_clicks",

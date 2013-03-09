@@ -1,4 +1,4 @@
-module Adstation
+module Adknowledge
   def self.token= token
     @token = token
   end

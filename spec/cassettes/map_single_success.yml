@@ -1,0 +1,51 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://integrated.adstation.com/1.3
+    headers:
+      Accepts:
+      - application/xml
+      Accept-Encoding:
+      - gzip
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - text/xml
+      Date:
+      - Sat, 09 Mar 2013 18:34:00 GMT
+      Accept-Ranges:
+      - bytes
+      Server:
+      - Noelios-Restlet-Engine/1.1..2
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?><result><email><test>true</test><requestid>3896146278cb759ba836b1c1e8a5b7e1</requestid><scheduledate>20130309123400</scheduledate><mailingid>879f6b476c8e46aa9129cbbacdea1839</mailingid><mailingtypeid>2</mailingtypeid><scheduleeventtypeid>1</scheduleeventtypeid><recipient>004c58927df600d73d58c817bafc2155</recipient><list>9250</list><cid>25451</cid><ccid>25451</ccid><campaignrank>4</campaignrank><categoryid>1178</categoryid><testid>826</testid><creative><dname>Email
+        to Fax</dname><from>TurnEmailIntoFax</from><friendlyfrom>Email to Fax</friendlyfrom><subjectid>16153</subjectid><subject><![CDATA[Faxes
+        delivered to your email.]]></subject><body><![CDATA[ \n<br /><br /><a href=\"http://fga.example.com/2069250/vuxtxunqpqmt6v~5u_unqlt3umtfullpxq_t_unsy0rlly/soyq_tx_tmswv0xnmqqtdyumorn_tqplpltceurt7ul_m/qostdfw3yu_7_e_vityxumptxveumms_tte3u_tnrt0x0/ut0xut7eunty1untf1umot2utezdeumteutyutw2utv3u/tvaut0u_efc8_z7v36_38e9_0vity8u29e7v36_ox97td/y97utd3aut09ultcdaumtd3umrmqotw3utwv8utweut80utecegu\">Email
+        Fax</a><br /><br /><a href=\"http://fga.example.com/2069250/vuxtxunqpqmt6uv~5_unqlt3untfullpxq_t_unsy0rllysoyq_tx_tmswv0xnmqqtdyu/morn_tqplpltceurt7ul_mqostdfw3yu_7_e_vityxumptxveumms_tte3u_tnrt0x0u/t0xut7eunty1untf1umot2utezdeumteutyutw2utv3utvaut0u_efc8_z7v36_38e9_/0vity8u29e7v36_ox97tdy97utd3aut09ultcdaumtd3umrmqotw3utwv8utweut80utecegu\">Online
+        fax to email services.</a><br /><br /><a href=\"http://fga.example.com/2069250/vuxtxunqpqmt6u_unqlt3uotfullpv~5xq_t_unsy0rllysoyq_tx_t/mswv0xnmqqtdyumorn_tqplpltceurt7ul_mqostdfw3yu_7_e_vit/yxumptxveumms_tte3u_tnrt0x0ut0xut7eunty1untf1umot2utez/deumteutyutw2utv3utvaut0u_efc8_z7v36_38e9_0vity8u29e7v/36_ox97tdy97utd3aut09ultcdaumtd3umrmqotw3utwv8utweut80utecegu\">Go
+        paperless, start sending and receiving faxes via email.</a><br /><br /><a
+        href=\"http://fga.example.com/2069250/vuxtxunqpqmt6v~5u_unqlt3umtfullpxq_t_unsy0rlly/soyq_tx_tmswv0xnmqqtdyumorn_tqplpltceurt7ul_m/qostdfw3yu_7_e_vityxumptxveumms_tte3u_tnrt0x0/ut0xut7eunty1untf1umot2utezdeumteutyutw2utv3u/tvaut0u_efc8_z7v36_38e9_0vity8u29e7v36_ox97td/y97utd3aut09ultcdaumtd3umrmqotw3utwv8utweut80utecegu\"><img
+        src=\"http://fga.example.com/2069250/vu3txunqpqmt6u_unqlt3umtfullpxq_t_unsy0rlv~5lysoyq_tx_t/mswv0xnmqqtdyumorn_tqplpltceurt7ul_mqostdfw3yu_7_e_vit/yxumptxveumms_tte3u_tnrt0x0ut0xumt7eunty1untf1umot2ute/zdeumteutyutw2utv3utvaut0u_efc8_z7v36_38e9_0vity8u29e7/v36_ox97tdy97utd3aut09ultcdaumtd3umrmqotw3utwv8utweut80utecegu.jpg\"
+        /></a><br /><br /><a style=\"font-size: 12px\" href=\"http://fga.example.com/preferences.php/2069250/vuaxtxunqpqmt6u_unqlt3umtfullpxq_t_unv~5sy0rll/ysoyq_tx_tmswv0xnmqqtdyumorn_tqplpltceurt7ul_/mqostdfw3yu_7_e_vityxumptxveumms_tte3u_tnrt0x/0ut0xut7eunty1untf1umot2utezdeumteutyutw2utv3/utvaut0u_efc8_z7v36_38e9_0vity8u29e7v36_ox97t/dy97utd3aut09ultcdaumtd3umrmqotw3utwv8utweut80utecegu\">Preferences</a><img
+        src=\"http://fga.example.com/2069250/vu63gz_mcv7a_ma3iz6txunqpqmt6u_unqlt3umtfuv~5llpxq_t_unsy0/rllysoyq_tx_tmswv0xnmqqtdyumorn_tqplpltceurt7ul_mqostdfw3/yu_7_e_vityxumptxveumms_tte3u_tnrt0x0ut0xut7eunty1untf1um/ot2utezdeumteutyutw2utv3utvaut0u_efc8_z7v36_38e9_0vity8u2/9e7v36_ox97tdy97utd3aut09ultcdaumtd3umrmqotw3utwv8utweut80utecegu.jpg\"
+        alt=\"\" width=\"1\" height=\"1\" border=\"0\" align=\"left\" hspace=\"0\"
+        vspace=\"0\" />\n<br /><br /><img src=\"http://fga.example.com/2069250/vuevc1fd_ma3iz6txunqpqmt6u_unqlt3umtfullpxq_t_un/v~5sy0rllysoyq_tx_tmswv0xnmqqtdyumorn_tqplpltce/urt7ul_mqostdfw3yu_7_e_vityxumptxveumms_tte3u_t/nrt0x0ut0xut7eunty1untf1umot2utezdeumteutyutw2u/tv3utvaut0u_efc8_z7v36_38e9_0vity8u29e7v36_ox97/tdy97utd3aut09ultcdaumtd3umrmqotw3utwv8utweut80utecegu.jpg\"
+        alt=\"\" width=\"1\" height=\"1\" border=\"0\" align=\"left\" hspace=\"0\"
+        vspace=\"0\" />\n<img src=\"http://fga.example.com/2069250/vuec3113e_ma3iz6txunqpqmt6u_v~5unqlt3umtfullpxq_t_unsy0rllysoyq_tx_tmswv0xn/mqqtdyumorn_tqplpltceurt7ul_mqostdfw3yu_7_e_vityxumptxveumms_tte3u_tnrt0x0/ut0xut7eunty1untf1umot2utezdeumteutyutw2utv3utvaut0u_efc8_z7v36_38e9_0vity/8u29e7v36_ox97tdy97utd3aut09ultcdaumtd3umrmqotw3utwv8utweut80uteceguy7v_m_tlo\"
+        alt=\"\" width=\"1\" height=\"1\" border=\"0\" align=\"left\" hspace=\"0\"
+        vspace=\"0\" />\n\n ]]></body><textbody/><mobilebody/><htmlcreativelength>3516</htmlcreativelength><textcreativelength>0</textcreativelength><mobilecreativelength>0</mobilecreativelength></creative><mid>0</mid></email><error><num>10</num><str>Domain
+        is suppressed\n</str><requestid>0</requestid><recipient>a2a8c7a5ce7c4249663803c7d040401f</recipient><list>9250</list></error></result>"
+    http_version: !!null 
+  recorded_at: Sat, 09 Mar 2013 18:34:02 GMT
+recorded_with: VCR 2.4.0

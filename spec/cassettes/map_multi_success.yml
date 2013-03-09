@@ -1,0 +1,68 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://integrated.adstation.com/1.3
+    headers:
+      Accepts:
+      - application/xml
+      Accept-Encoding:
+      - gzip
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - text/xml
+      Date:
+      - Sat, 09 Mar 2013 21:43:47 GMT
+      Accept-Ranges:
+      - bytes
+      Server:
+      - Noelios-Restlet-Engine/1.1..2
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: ! "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?><result><email><test>true</test><requestid>bd485f2eed13f1d9110cc1bfb18c15d2</requestid><scheduledate>20130309154347</scheduledate><mailingid>8f69f262f5ffe843f0e0982168e20617</mailingid><mailingtypeid>2</mailingtypeid><scheduleeventtypeid>1</scheduleeventtypeid><recipient>004c58927df600d73d58c817bafc2155</recipient><list>9250</list><cid>1708</cid><ccid>1708</ccid><campaignrank>5</campaignrank><categoryid>1349</categoryid><testid>826</testid><creative><dname>Cruises</dname><from>Cruises</from><friendlyfrom>Cruises</friendlyfrom><subjectid>167825</subjectid><subject><![CDATA[Early-bird
+        cruise specials]]></subject><body><![CDATA[ \n<br /><br /><a href=\"http://fga.example.com/2069250/vuxtxumsl_tt6u_unqlt3umtfuv~5llpxq_t_unsy0rllysoyq_tx_tmswv0xnmqqtd/yumorn_trqpnstceupt7ul_m_usmtdfw3yu_7_e_vityxumptxveumop_ute3u_tnr/t0x0ut0xut7eunty1untf1umot2utezdeumteutyutw2utv3utvaut0u_xcf3dzdty/8u29e7v36_ox97tdy97utd3aut09ultcdaumtd3umrs_tnqtw3utwv8utweut80utecegu\">Cruise</a><br
+        /><br /><a href=\"http://fga.example.com/2069250/vuxtxumv~5sl_tt6u_unqlt3untfullpxq_t_unsy0rllysoyq_tx/_tmswv0xnmqqtdyumorn_trqpnstceupt7ul_m_usmtdfw3yu_7_/e_vityxumptxveumop_ute3u_tnrt0x0ut0xut7eunty1untf1um/ot2utezdeumteutyutw2utv3utvaut0u_xcf3dzdty8u29e7v36_/ox97tdy97utd3aut09ultcdaumtd3umrs_tnqtw3utwv8utweut80utecegu\">Relax
+        and enjoy your cruise.</a><br /><br /><a href=\"http://fga.example.com/2069250/vuxtxumsl_tt6uv~5_unqlt3uotfullpxq_t_unsy0rl/lysoyq_tx_tmswv0xnmqqtdyumorn_trqpnstceupt7/ul_m_usmtdfw3yu_7_e_vityxumptxveumop_ute3u_/tnrt0x0ut0xut7eunty1untf1umot2utezdeumteuty/utw2utv3utvaut0u_xcf3dzdty8u29e7v36_ox97tdy/97utd3aut09ultcdaumtd3umrs_tnqtw3utwv8utweut80utecegu\">Make
+        a cruise the vacation of your dreams by finding the perfect one here</a><br
+        /><br /><a href=\"http://fga.blueslatenews.com/2069250/vuxtxumsl_tt6u_unqlt3umtfuv~5llpxq_t_unsy0rllysoyq_tx_tmswv0xnmqqtd/yumorn_trqpnstceupt7ul_m_usmtdfw3yu_7_e_vityxumptxveumop_ute3u_tnr/t0x0ut0xut7eunty1untf1umot2utezdeumteutyutw2utv3utvaut0u_xcf3dzdty/8u29e7v36_ox97tdy97utd3aut09ultcdaumtd3umrs_tnqtw3utwv8utweut80utecegu\"><img
+        src=\"http://fga.blueslatenews.com/2069250/vu3txumsl_tt6u_unqlt3umtfullpxq_t_unsy0v~5rll/ysoyq_tx_tmswv0xnmqqtdyumorn_trqpnstceupt7ul/_m_usmtdfw3yu_7_e_vityxumptxveumop_ute3u_tnr/t0x0ut0xumt7eunty1untf1umot2utezdeumteutyutw/2utv3utvaut0u_xcf3dzdty8u29e7v36_ox97tdy97ut/d3aut09ultcdaumtd3umrs_tnqtw3utwv8utweut80utecegu.jpg\"
+        /></a><br /><br /><a style=\"font-size: 12px\" href=\"http://fga.blueslatenews.com/preferences.php/2069250/vuaxtxumsl_tt6u_unqlt3umtfullpxq_t_unsy0rllys/ov~5yq_tx_tmswv0xnmqqtdyumorn_trqpnstceupt7u/l_m_usmtdfw3yu_7_e_vityxumptxveumop_ute3u_tn/rt0x0ut0xut7eunty1untf1umot2utezdeumteutyutw/2utv3utvaut0u_xcf3dzdty8u29e7v36_ox97tdy97ut/d3aut09ultcdaumtd3umrs_tnqtw3utwv8utweut80utecegu\">Preferences</a><img
+        src=\"http://fga.blueslatenews.com/2069250/vu63gz_mcv7a_ma3iz6txumsl_tt6u_unqlt3umtv~5fullpxq_t_unsy0rllysoyq_tx_t/mswv0xnmqqtdyumorn_trqpnstceupt7ul_m_usmtdfw3yu_7_e_vityxumptxveumop_u/te3u_tnrt0x0ut0xut7eunty1untf1umot2utezdeumteutyutw2utv3utvaut0u_xcf3d/zdty8u29e7v36_ox97tdy97utd3aut09ultcdaumtd3umrs_tnqtw3utwv8utweut80utecegu.jpg\"
+        alt=\"\" width=\"1\" height=\"1\" border=\"0\" align=\"left\" hspace=\"0\"
+        vspace=\"0\" />\n<br /><br /><img src=\"http://fga.blueslatenews.com/2069250/vuevc1fd_ma3iz6tv~5xumsl_tt6u_unqlt3umtfullpxq_t_unsy0rllysoyq_tx_tmsw/v0xnmqqtdyumorn_trqpnstceupt7ul_m_usmtdfw3yu_7_e_vityxumptxveumop_ute/3u_tnrt0x0ut0xut7eunty1untf1umot2utezdeumteutyutw2utv3utvaut0u_xcf3dz/dty8u29e7v36_ox97tdy97utd3aut09ultcdaumtd3umrs_tnqtw3utwv8utweut80utecegu.jpg\"
+        alt=\"\" width=\"1\" height=\"1\" border=\"0\" align=\"left\" hspace=\"0\"
+        vspace=\"0\" />\n<img src=\"http://fga.blueslatenews.com/2069250/vuec3113e_ma3iz6txumsl_tt6u_unqlv~5t3umtfullpxq_t_unsy0rll/ysoyq_tx_tmswv0xnmqqtdyumorn_trqpnstceupt7ul_m_usmtdfw3yu/_7_e_vityxumptxveumop_ute3u_tnrt0x0ut0xut7eunty1untf1umot/2utezdeumteutyutw2utv3utvaut0u_xcf3dzdty8u29e7v36_ox97tdy/97utd3aut09ultcdaumtd3umrs_tnqtw3utwv8utweut80uteceguy7v_m_tlo\"
+        alt=\"\" width=\"1\" height=\"1\" border=\"0\" align=\"left\" hspace=\"0\"
+        vspace=\"0\" />\n\n ]]></body><textbody/><mobilebody/><htmlcreativelength>3443</htmlcreativelength><textcreativelength>0</textcreativelength><mobilecreativelength>0</mobilecreativelength></creative><mid>0</mid></email><email><test>true</test><requestid>e1c9633e09e645176019dd44aeb2054b</requestid><scheduledate>20130309154347</scheduledate><mailingid>f7d8cdc90aba997d7dfd73b05c806182</mailingid><mailingtypeid>5</mailingtypeid><scheduleeventtypeid>1</scheduleeventtypeid><recipient>004c58927df600d73d58c817bafc2156</recipient><list>9250</list><cid>5464</cid><ccid>5464</ccid><campaignrank>0</campaignrank><categoryid>341</categoryid><testid>826</testid><creative><dname>Platinum
+        Credit Cards</dname><from>PlatinumCreditCards</from><friendlyfrom>Platinum
+        Credit Cards</friendlyfrom><subjectid>69340</subjectid><subject><![CDATA[Become
+        an elite owner of a platinum credit card]]></subject><body><![CDATA[ \n<br
+        /><br /><a href=\"http://fga.blueslatenews.com/2069250/vuxtxuqprpt6u_unqlt3umtfullpxq_t_unsy0rllysoyqv~5_tx_tmswv0xnmqrtdyu/morn_trqpnstceupt7um_mrlstdfw3yu_7_e_vityxumptxveuopmte3u_tnrt0x0ut/0xut7euqty1umtf1u_lmt2utezdeumteutyutw2utv3utvaut0u_a6ve38f7_xczy3e/_xvcydty8uv96_ox97tdy97utd3aut09ultcdautd3ur_uopltw3utwv8utweut80utecegu\">Platinum
+        Credit Card</a><br /><br /><a href=\"http://fga.blueslatenews.com/2069250/vuxtxuqprpt6u_unqlt3untfullpxq_t_unsyv~50rllysoyq_tx_tmswv0xnmqrtdyu/morn_trqpnstceupt7um_mrlstdfw3yu_7_e_vityxumptxveuopmte3u_tnrt0x0ut/0xut7euqty1umtf1u_lmt2utezdeumteutyutw2utv3utvaut0u_a6ve38f7_xczy3e/_xvcydty8uv96_ox97tdy97utd3aut09ultcdautd3ur_uopltw3utwv8utweut80utecegu\">Join
+        the elite few who own a platinum credit card</a><br /><br /><a href=\"http://fga.blueslatenews.com/2069250/vuxtxuqprpt6u_uv~5nqlt3uotfullpxq_t_unsy0rllysoyq_tx_tmswv0xnmqrtdyu/morn_trqpnstceupt7um_mrlstdfw3yu_7_e_vityxumptxveuopmte3u_tnrt0x0ut/0xut7euqty1umtf1u_lmt2utezdeumteutyutw2utv3utvaut0u_a6ve38f7_xczy3e/_xvcydty8uv96_ox97tdy97utd3aut09ultcdautd3ur_uopltw3utwv8utweut80utecegu\">Click
+        here to shop and compare the best platinum credit cards for you</a><br /><br
+        /><a href=\"http://fga.blueslatenews.com/2069250/vuxtxuqprpt6u_unqlt3umtfullpxq_t_unsy0rllysoyqv~5_tx_tmswv0xnmqrtdyu/morn_trqpnstceupt7um_mrlstdfw3yu_7_e_vityxumptxveuopmte3u_tnrt0x0ut/0xut7euqty1umtf1u_lmt2utezdeumteutyutw2utv3utvaut0u_a6ve38f7_xczy3e/_xvcydty8uv96_ox97tdy97utd3aut09ultcdautd3ur_uopltw3utwv8utweut80utecegu\"><img
+        src=\"http://fga.blueslatenews.com/2069250/vu3txuqprpt6u_unqlt3umtfv~5ullpxq_t_unsy0rlly/soyq_tx_tmswv0xnmqrtdyumorn_trqpnstceupt7um_/mrlstdfw3yu_7_e_vityxumptxveuopmte3u_tnrt0x0/ut0xumt7euqty1umtf1u_lmt2utezdeumteutyutw2ut/v3utvaut0u_a6ve38f7_xczy3e_xvcydty8uv96_ox97/tdy97utd3aut09ultcdautd3ur_uopltw3utwv8utweut80utecegu.jpg\"
+        /></a><br /><br /><a style=\"font-size: 12px\" href=\"http://fga.blueslatenews.com/preferences.php/2069250/vuaxtxuqv~5prpt6u_unqlt3umtfullpxq_t_unsy0rllysoyq_tx_t/mswv0xnmqrtdyumorn_trqpnstceupt7um_mrlstdfw3yu_7_e_vit/yxumptxveuopmte3u_tnrt0x0ut0xut7euqty1umtf1u_lmt2utezd/eumteutyutw2utv3utvaut0u_a6ve38f7_xczy3e_xvcydty8uv96_/ox97tdy97utd3aut09ultcdautd3ur_uopltw3utwv8utweut80utecegu\">Preferences</a><img
+        src=\"http://fga.blueslatenews.com/2069250/vu63gzv~5_mcv7a_ma3iz6txuqprpt6u_unqlt3umtfullpxq_t_unsy0r/llysoyq_tx_tmswv0xnmqrtdyumorn_trqpnstceupt7um_mrlstdfw3y/u_7_e_vityxumptxveuopmte3u_tnrt0x0ut0xut7euqty1umtf1u_lmt/2utezdeumteutyutw2utv3utvaut0u_a6ve38f7_xczy3e_xvcydty8uv/96_ox97tdy97utd3aut09ultcdautd3ur_uopltw3utwv8utweut80utecegu.jpg\"
+        alt=\"\" width=\"1\" height=\"1\" border=\"0\" align=\"left\" hspace=\"0\"
+        vspace=\"0\" />\n<br /><br /><img src=\"http://fga.blueslatenews.com/2069250/vuevc1fd_ma3iz6v~5txuqprpt6u_unqlt3umtfullpxq_t_unsy0rllysoyq_tx_tmswv0/xnmqrtdyumorn_trqpnstceupt7um_mrlstdfw3yu_7_e_vityxumptxveuopmte3u_tnr/t0x0ut0xut7euqty1umtf1u_lmt2utezdeumteutyutw2utv3utvaut0u_a6ve38f7_xcz/y3e_xvcydty8uv96_ox97tdy97utd3aut09ultcdautd3ur_uopltw3utwv8utweut80utecegu.jpg\"
+        alt=\"\" width=\"1\" height=\"1\" border=\"0\" align=\"left\" hspace=\"0\"
+        vspace=\"0\" />\n<img src=\"http://fga.blueslatenews.com/2069250/vuec3113e_ma3iv~5z6txuqprpt6u_unqlt3umtfullpxq_/t_unsy0rllysoyq_tx_tmswv0xnmqrtdyumorn_trqpnst/ceupt7um_mrlstdfw3yu_7_e_vityxumptxveuopmte3u_/tnrt0x0ut0xut7euqty1umtf1u_lmt2utezdeumteutyut/w2utv3utvaut0u_a6ve38f7_xczy3e_xvcydty8uv96_ox/97tdy97utd3aut09ultcdautd3ur_uopltw3utwv8utweut80utecegu\"
+        alt=\"\" width=\"1\" height=\"1\" border=\"0\" align=\"left\" hspace=\"0\"
+        vspace=\"0\" />\n\n ]]></body><textbody/><mobilebody/><htmlcreativelength>3508</htmlcreativelength><textcreativelength>0</textcreativelength><mobilecreativelength>0</mobilecreativelength></creative><mid>0</mid></email><error><num>10</num><str>Domain
+        is suppressed\n</str><requestid>0</requestid><recipient>a2a8c7a5ce7c4249663803c7d040401f</recipient><list>9250</list></error><error><num>10</num><str>Domain
+        is suppressed\n</str><requestid>0</requestid><recipient>a2a8c7a5ce7c4249663803c7d040401e</recipient><list>9250</list></error></result>"
+    http_version: !!null 
+  recorded_at: Sat, 09 Mar 2013 21:43:47 GMT
+recorded_with: VCR 2.4.0

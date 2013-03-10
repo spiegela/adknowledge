@@ -4,8 +4,6 @@ require 'faraday_middleware/response/parse_xml'
 require 'active_support/core_ext/module/delegation'
 require 'nokogiri'
 
-require 'pry'
-
 module Adknowledge
   class Integrated
     include Enumerable

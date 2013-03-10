@@ -19,7 +19,7 @@ Gem::Specification.new do |s|
   # specify any dependencies here; for example:
   s.add_development_dependency "pry"
   s.add_development_dependency "rspec"
-  s.add_development_dependency "webmock", "1.10"
+  s.add_development_dependency "webmock"
   s.add_development_dependency "vcr"
   s.add_development_dependency "coveralls"
   s.add_runtime_dependency "rake"

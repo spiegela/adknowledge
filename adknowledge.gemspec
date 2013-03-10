@@ -21,6 +21,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency "rspec"
   s.add_development_dependency "webmock", "1.10"
   s.add_development_dependency "vcr"
+  s.add_development_dependency "coveralls"
   s.add_runtime_dependency "rake"
   s.add_runtime_dependency "activesupport"
   s.add_runtime_dependency "oj"

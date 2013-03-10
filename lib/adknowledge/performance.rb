@@ -75,7 +75,7 @@ module Adknowledge
     # @param [Array] grouping(s)
     # @return [Adknowledge::Performance] query object
     def group_by *groupings
-      @dimensions.merge! parmerize(groupings, VALID_DIMENSIONS, 'Invalid dimension group')
+      @dimensions.merge! paramerize(groupings, VALID_DIMENSIONS, 'Invalid dimension group')
       self
     end
 

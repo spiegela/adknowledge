@@ -28,6 +28,9 @@ recipients = [
   }
 ]
 
+# Specify your auth token:
+Adknowledge.token = "your token here"
+
 # Create an Integrated object
 mapper = Adknowledge::Integrated.new \
           domain: 'www.mydomain.com',
@@ -64,11 +67,19 @@ Performance
 We also give you a nice ActiveRecord-inspired query interface
 
 ```ruby
+# Specify your auth token:
+Adknowledge.token = "your token here"
+
 # Create a query object
 perf = Adknowlege::Performance.new
+
 perf.where(start_date: 1, domain_group: 'AOL Group').
      select(:revenue, :paid_clicks).
      group_by(:subid, :report_date)
+
+perf.each do |row|
+  # do something with the results
+end
 ```
 
 Supports the following query options:
@@ -95,6 +106,7 @@ There are several things currently unfinished:
 How to Contribute
 -----------------
 * Fork this repository on Github
+* Run the test suite - FYI: Auth tokens have been removed to protect the innocent
 * Add code and tests
 * Submit a pull request
 * I'll merge if it looks good & passes

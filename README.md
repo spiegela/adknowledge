@@ -1,6 +1,6 @@
 Adknowledge <a id='top'></a>
 ===========
-[![Build Status](https://travis-ci.org/spiegela/adknowledge.png?branch=develop)](https://travis-ci.org/spiegela/adknowledge) [![Gem Version](https://badge.fury.io/rb/adknowledge.png)](http://badge.fury.io/rb/adknowledge) [![Dependency Status](https://gemnasium.com/spiegela/adknowledge.png)](https://gemnasium.com/spiegela/adknowledge) [![Code Climate](https://codeclimate.com/github/spiegela/adknowledge.png)](https://codeclimate.com/github/spiegela/adknowledge) [![Coverage Status](https://coveralls.io/repos/spiegela/revisionist/badge.png?branch=master)](https://coveralls.io/r/spiegela/revisionist)
+[![Build Status](https://travis-ci.org/spiegela/adknowledge.png?branch=develop)](https://travis-ci.org/spiegela/adknowledge) [![Gem Version](https://badge.fury.io/rb/adknowledge.png)](http://badge.fury.io/rb/adknowledge) [![Dependency Status](https://gemnasium.com/spiegela/adknowledge.png)](https://gemnasium.com/spiegela/adknowledge) [![Code Climate](https://codeclimate.com/github/spiegela/adknowledge.png)](https://codeclimate.com/github/spiegela/adknowledge) [![Coverage Status](https://coveralls.io/repos/spiegela/revisionist/badge.png?branch=master)](https://coveralls.io/r/spiegela/adknowledge)
 
 A very Ruby client library for [Adknowledge](http://www.adknowledge.com) APIs
 

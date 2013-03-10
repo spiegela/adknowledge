@@ -1,0 +1,41 @@
+---
+http_interactions:
+- request:
+    method: get
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.8.6
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - ! '*/*'
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sun, 10 Mar 2013 00:55:29 GMT
+      Server:
+      - Apache/2.2.12 (Linux/SUSE)
+      X-Powered-By:
+      - PHP/5.3.8-ZS5.5.0 ZendServer/5.0
+      Set-Cookie:
+      - ZDEDebuggerPresent=php,phtml,php3; path=/
+      Cache-Control:
+      - no-cache, must-revalidate
+      Expires:
+      - Mon, 26 Jul 1997 05:00:00 GMT
+      Content-Length:
+      - '1718'
+      Content-Type:
+      - application/json
+    body:
+      encoding: US-ASCII
+      string: ! '{"status":1,"data":[{"subid":"101","report_date":"2013-03-08","revenue":"0.00","paid_clicks":"0"},{"subid":"101","report_date":"2013-03-09","revenue":"0.00","paid_clicks":"0"},{"subid":"3924621","report_date":"2013-03-09","revenue":"0.32","paid_clicks":"1"},{"subid":"4052755","report_date":"2013-03-09","revenue":"0.31","paid_clicks":"1"},{"subid":"4432499","report_date":"2013-03-08","revenue":"1.45","paid_clicks":"1"},{"subid":"4459811","report_date":"2013-03-09","revenue":"0.49","paid_clicks":"1"},{"subid":"4462612","report_date":"2013-03-08","revenue":"0.28","paid_clicks":"1"},{"subid":"4492234","report_date":"2013-03-08","revenue":"0.20","paid_clicks":"1"},{"subid":"4517827","report_date":"2013-03-09","revenue":"0.00","paid_clicks":"0"},{"subid":"4527947","report_date":"2013-03-08","revenue":"0.26","paid_clicks":"1"},{"subid":"4530689","report_date":"2013-03-08","revenue":"0.47","paid_clicks":"1"},{"subid":"4533364","report_date":"2013-03-08","revenue":"0.31","paid_clicks":"2"},{"subid":"4536573","report_date":"2013-03-08","revenue":"0.33","paid_clicks":"1"},{"subid":"4538370","report_date":"2013-03-09","revenue":"0.56","paid_clicks":"1"},{"subid":"4538781","report_date":"2013-03-08","revenue":"0.00","paid_clicks":"0"},{"subid":"4538833","report_date":"2013-03-08","revenue":"0.36","paid_clicks":"1"},{"subid":"4542071","report_date":"2013-03-08","revenue":"0.12","paid_clicks":"2"},{"subid":"4544113","report_date":"2013-03-08","revenue":"0.00","paid_clicks":"0"},{"subid":"4544119","report_date":"2013-03-08","revenue":"0.29","paid_clicks":"1"},{"subid":"4544122","report_date":"2013-03-08","revenue":"0.00","paid_clicks":"0"}],"messages":[],"errors":[],"code":200,"time":{"click":1362876599}}'
+    http_version: !!null 
+  recorded_at: Sun, 10 Mar 2013 00:55:30 GMT
+recorded_with: VCR 2.4.0

@@ -3,14 +3,13 @@ require 'ox'
 require 'addressable/uri'
 require 'faraday_middleware/response/parse_xml'
 require 'active_support/core_ext/module/delegation'
-require 'pry'
 
 module Adknowledge
   class Integrated
+    include Enumerable
+
     attr_reader :request, :recipients
     attr_accessor :idomain, :cdomain, :subid, :test
-
-    include Enumerable
 
     delegate :[], to: :recipients
 
@@ -25,6 +24,15 @@ module Adknowledge
 
     MANDATORY_FIELDS = [ :recipient, :list, :domain ]
 
+    # Create integrated query object
+    #
+    # @param parameters
+    # @option [Symbol] domain set both click-domain and image-domain to the
+    # same domain name for the request
+    # @option [Symbol] cdomain set the click-domain for the request
+    # @option [Symbol] idomain set the image-domain for the request
+    # @option [Symbol] subid set the subid for the request
+    # @option [Symbol] test set the test flag for the request
     def initialize params={}
       @records = []
       @mapped  = false
@@ -33,6 +41,10 @@ module Adknowledge
       end
     end
 
+    # Set the array of recipients to map
+    #
+    # @param [Array] recipients an array of hashes containing recipient details
+    # @return [String] prepared XML request for recipient array
     def recipients= recipient_hashes
       @recipients = recipient_hashes
       doc = Ox::Document.new version: '1.0'
@@ -45,6 +57,10 @@ module Adknowledge
       @request = Ox.dump(doc, indent: 0, with_instruct: true).gsub(/\n/, '')
     end
 
+
+    # Map content for specified recipients
+    #
+    # @return [Boolean] map attempt submitted
     def map!
       unless Adknowledge.token
         raise ArgumentError, 'Adknowledge token required to perform queries'
@@ -54,20 +70,33 @@ module Adknowledge
       @mapped = true
     end
 
+    # Return all successfully mapped recipients
+    #
+    # @return [Array] mapped recipients
     def mapped_recipients
       return [] unless mapped?
       recipients.select{|r| r['success']}
     end
 
+    # Return all errored recipients
+    #
+    # @return [Array] errored recipients
     def errored_recipients
       return [] unless mapped?
       recipients.select{|r| ! r['success']}
     end
 
+    # Set both click-domain and image-domain
+    #
+    # @param [Symbol] domain
+    # @return [Symbol] domain
     def domain= dom
       self.cdomain = self.idomain = dom
     end
 
+    # Return the query params that will be sent to Adknowledge integrated API
+    #
+    # @return [Hash] query params
     def query_params
       { token:   Adknowledge.token,
         idomain: idomain,
@@ -78,6 +107,9 @@ module Adknowledge
       }
     end
 
+    # Return confirmation if the mapping query has been run yet
+    #
+    # @return [Boolean] mapped?
     def mapped?
       @mapped
     end

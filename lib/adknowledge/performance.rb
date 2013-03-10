@@ -1,18 +1,18 @@
-require "faraday"
-require "faraday_middleware"
-require "faraday_middleware/parse_oj"
-require "active_support/core_ext/module/delegation"
+require 'faraday'
+require 'faraday_middleware'
+require 'faraday_middleware/parse_oj'
+require 'active_support/core_ext/module/delegation'
 
 module Adknowledge
   class Performance
     include Enumerable
 
-    attr_reader :measures, :dimensions, :filter, :options, :sort_option,
-                :pivot_options, :records
+    attr_reader :measures, :dimensions, :filter, :sort_option, :pivot_options,
+                :records, :options
 
     delegate :[], to: :records
 
-    URL  = "http://api.publisher.adknowledge.com/performance"
+    URL  = 'http://api.publisher.adknowledge.com/performance'
 
     VALID_MEASURES = [
       :revenue, :schedules, :clicks, :paid_clicks, :valid_clicks,
@@ -38,14 +38,19 @@ module Adknowledge
 
     VALID_PIVOT_KEYS = [:pivot, :sum, :count]
 
+    DEFAULT_FILTER = {product_id: '2', product_guid: '*'}
+
     def initialize
       @measures   = {}
       @dimensions = {}
-      @filter     = {product_guid: "*"}
+      @filter     = DEFAULT_FILTER.dup
       @options    = {}
       @pivot_options = {}
     end
 
+    # Iterate the query results. Runs the query if it hasn't been already.
+    #
+    # @param [Block] block
     def each
       if block_given?
         records.each do |doc|
@@ -56,94 +61,133 @@ module Adknowledge
       end
     end
 
+    # Specify the measure(s) to select in the query
+    #
+    # @param [Array] selection(s)
+    # @return [Adknowledge::Performance] query object
     def select *selection
       selection = selection.map{|x| x.to_sym} # handle strings & symbols equally
       unless (selection - VALID_MEASURES).empty?
-        raise ArgumentError, "Invalid measurement selection"
+        raise ArgumentError, 'Invalid measurement selection'
       end
       @measures.merge! Hash[selection.zip([1] * selection.count)]
       self
     end
 
+    # Specify the dimension(s) to group measures by
+    #
+    # @param [Array] grouping(s)
+    # @return [Adknowledge::Performance] query object
     def group_by *groupings
       groupings = groupings.map{|x| x.to_sym} # handle strings & symbols equally
       unless (groupings - VALID_DIMENSIONS).empty?
-        raise ArgumentError, "Invalid dimension grouping"
+        raise ArgumentError, 'Invalid dimension grouping'
       end
       @dimensions.merge! Hash[groupings.zip([1] * groupings.count)]
       self
     end
 
+    # Specify the filter criteria to limit query by
+    #
+    # @param [Hash] criteria
+    # @return [Adknowledge::Performance] query object
     def where criteria
       unless(criteria.keys - VALID_FILTERS).empty?
-        raise ArgumentError, "Invalid filter criteria"
+        raise ArgumentError, 'Invalid filter criteria'
       end
       criteria.each{|k,v| criteria[k] = v.to_s}
       @filter.merge! criteria
       self
     end
 
+    # Specify a number of results to retrun
+    #
+    # @param [Integer] limit
+    # @return [Adknowledge::Performance] query object
     def limit limit
       unless limit.is_a? Fixnum
-        raise ArgumentError, "Limit must be an integer"
+        raise ArgumentError, 'Limit must be an integer'
       end
-      @options[:limit] = limit
+      @options[:limit] = limit.to_s
       self
     end
 
+    # Specify the column index to sort by
+    #
+    # @param [Integer] sort_option
+    # @return [Adknowledge::Performance] query object
     def sort sort_option
       unless sort_option.is_a? Fixnum
-        raise ArgumentError, "Sort option must be an integer"
+        raise ArgumentError, 'Sort option must be an integer'
       end
-      @sort_option = sort_option
+      @sort_option = sort_option.to_s
       self
     end
 
+    # Specify whether to display the full set even if entries are 0
+    #
+    # @param [Boolean] full
+    # @return [Adknowledge::Performance] query object
     def full full
       unless !!full == full #Boolean check
-        raise ArgumentError, "Full option must be a boolean"
+        raise ArgumentError, 'Full option must be a boolean'
       end
-      @options[:full] = full
+      @options[:full] = full ? '1' : '0'
       self
     end
 
+    # Disable caching of queries. By default queries are cached for 60 seconds
+    #
+    # @param [Boolean] nocache
+    # @return [Adknowledge::Performance] query object
     def nocache nocache
       unless !!nocache == nocache #Boolean check
-        raise ArgumentError, "NoCache option must be a boolean"
+        raise ArgumentError, 'NoCache option must be a boolean'
       end
-      @options[:nocache] = nocache
+      @options[:nocache] = nocache ? '1' : '0'
       self
     end
 
+    # Force query to show filtered dimensions to be shown
+    #
+    # @param [Boolean] display_all
+    # @return [Adknowledge::Performance] query object
     def display_all display_all
       unless !!display_all == display_all #Boolean check
         raise ArgumentError, "display_all option must be a boolean"
       end
-      @options[:display_all] = display_all
+      @options[:all] = display_all ? '1' : '0'
       self
     end
 
+    # Specify pivot options
+    #
+    # @param [Object] pivot Existing grouped field (as symbol) or Hash of options
+    # @return [Adknowledge::Performance] query object
     def pivot pivot_opt
       case pivot_opt
       when Symbol
         unless valid_pivot_values.include? pivot_opt
-          raise ArgumentError, "Pivotted field must be a grouped dimension"
+          raise ArgumentError, 'Pivotted field must be a grouped dimension'
         end
-        @pivot_options[:pivot] = pivot_opt
+        @pivot_options[:pivot] = pivot_opt.to_s
       when Hash
         unless (pivot_opt.values - VALID_MEASURES).empty?
-          raise ArgumentError, "Pivotted value must be a measurement"
+          raise ArgumentError, 'Pivotted value must be a measurement'
         end
         unless (pivot_opt.keys - [:sum, :count]).empty?
-          raise ArgumentError, "Pivot must be sum or count"
+          raise ArgumentError, 'Pivot must be sum or count'
         end
         @pivot_options = pivot_opt
       else
-        raise ArgumentError, "Pivot options must be a symbol or hash"
+        raise ArgumentError, 'Pivot options must be a symbol or hash'
       end
       self
     end
 
+    # Displays the query parameters passed to Adknowledge performance API
+    #
+    # @return [Hash] query parameters
     def query_params
       p = base_params.merge(filter_params).
         merge(options_params).
@@ -154,11 +198,14 @@ module Adknowledge
       p
     end
 
+    # Return the query result records
+    #
+    # @return [Array] query result records
     def records
       unless Adknowledge.token
-        raise ArgumentError, "Adknowledge token required to perform queries"
+        raise ArgumentError, 'Adknowledge token required to perform queries'
       end
-      results.body["data"] if results.body.has_key?("data")
+      results.body['data'] if results.body.has_key?('data')
     end
 
 
@@ -170,7 +217,7 @@ module Adknowledge
 
     def results
       @results ||= conn.get do |req|
-        req.url "/performance", query_params
+        req.url '/performance.json', query_params
       end
     end
 
@@ -182,27 +229,23 @@ module Adknowledge
     end
 
     def valid_pivot_values
-      dimensions.keys + ["*"]
+      dimensions.keys + ['*']
     end
 
     def measures_param
-      measures.keys.join(",")
+      measures.keys.join(',')
     end
 
     def dimensions_param
-      dimensions.keys.join(",")
+      dimensions.keys.join(',')
+    end
+
+    def options_params
+      options
     end
 
     def filter_params
       filter
-    end
-
-    def options_params
-      options.inject({}) do |res,k,v|
-        k = :all if k == :display_all
-        res[k] = v ? "1" : "0"
-        res
-      end
     end
 
     def pivot_params

@@ -1,6 +1,6 @@
 require 'faraday'
 require 'faraday_middleware'
-require 'faraday_middleware/parse_oj'
+require 'faraday_middleware/multi_json'
 require 'active_support/core_ext/module/delegation'
 
 module Adknowledge
@@ -206,7 +206,7 @@ module Adknowledge
 
     def conn
       @conn ||= Faraday.new(:url => URL) do |b|
-        b.response :oj
+        b.response :multi_json
         b.adapter  Faraday.default_adapter
       end
     end

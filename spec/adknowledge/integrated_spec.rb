@@ -23,7 +23,7 @@ describe Adknowledge::Integrated do
 
   let :request_xml do
     %q[
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0"?>
 <request>
 <email>
 <recipient>004c58927df600d73d58c817bafc2155</recipient>

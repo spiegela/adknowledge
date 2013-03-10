@@ -4,6 +4,7 @@ $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), "..", "lib"))
 require 'adknowledge'
 require 'rspec'
 require 'vcr'
+require 'coveralls'
 
 VCR.configure do |c|
   c.hook_into :webmock
@@ -14,3 +15,5 @@ VCR.configure do |c|
     match_requests_on: [ :method ]
   }
 end
+
+Coveralls.wear!

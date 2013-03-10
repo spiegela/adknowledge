@@ -1,8 +1,10 @@
 require 'faraday'
-require 'ox'
 require 'addressable/uri'
 require 'faraday_middleware/response/parse_xml'
 require 'active_support/core_ext/module/delegation'
+require 'nokogiri'
+
+require 'pry'
 
 module Adknowledge
   class Integrated
@@ -47,14 +49,15 @@ module Adknowledge
     # @return [String] prepared XML request for recipient array
     def recipients= recipient_hashes
       @recipients = recipient_hashes
-      doc = Ox::Document.new version: '1.0'
-      req = Ox::Element.new 'request'
-      doc << Ox::Instruct.new('xml version="1.0" encoding="UTF-8"') << req
-      recipient_hashes.each do |recipient_hash|
-        email_hash = recipient_hash.select{|x| VALID_FIELDS.include? x}
-        req << email_xml(email_hash)
+      doc = Nokogiri::XML::Builder.new do |root|
+        root.request do |req|
+          recipient_hashes.each do |recipient_hash|
+            email_hash = recipient_hash.select{|x| VALID_FIELDS.include? x}
+            email_xml(email_hash, req)
+          end
+        end
       end
-      @request = Ox.dump(doc, indent: 0, with_instruct: true).gsub(/\n/, '')
+      @request = doc.to_xml(save_with: Nokogiri::XML::Node::SaveOptions::AS_XML).gsub("\n", '')
     end
 
 
@@ -174,19 +177,15 @@ module Adknowledge
       uri.query
     end
 
-    def email_xml email_hash
+    def email_xml email_hash, doc
       unless (MANDATORY_FIELDS - email_hash.keys).empty?
         raise ArgumentError, 'One or more mandatory fields were not submitted'
       end
-      e = Ox::Element.new(:email)
-      email_hash.each do |field, value|
-        e << field_xml(field, value)
+      doc.email do |email|
+        email_hash.each do |field, value|
+          email.send(field, value)
+        end
       end
-      e
-    end
-
-    def field_xml field, value
-      Ox::Element.new(field) << value.to_s
     end
 
   end

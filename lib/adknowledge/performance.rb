@@ -66,11 +66,7 @@ module Adknowledge
     # @param [Array] selection(s)
     # @return [Adknowledge::Performance] query object
     def select *selection
-      selection = selection.map{|x| x.to_sym} # handle strings & symbols equally
-      unless (selection - VALID_MEASURES).empty?
-        raise ArgumentError, 'Invalid measurement selection'
-      end
-      @measures.merge! Hash[selection.zip([1] * selection.count)]
+      @measures.merge! paramerize(selection, VALID_MEASURES, 'Invalid measurement selection')
       self
     end
 
@@ -79,11 +75,7 @@ module Adknowledge
     # @param [Array] grouping(s)
     # @return [Adknowledge::Performance] query object
     def group_by *groupings
-      groupings = groupings.map{|x| x.to_sym} # handle strings & symbols equally
-      unless (groupings - VALID_DIMENSIONS).empty?
-        raise ArgumentError, 'Invalid dimension grouping'
-      end
-      @dimensions.merge! Hash[groupings.zip([1] * groupings.count)]
+      @dimensions.merge! parmerize(groupings, VALID_DIMENSIONS, 'Invalid dimension group')
       self
     end
 
@@ -129,10 +121,7 @@ module Adknowledge
     # @param [Boolean] full
     # @return [Adknowledge::Performance] query object
     def full full
-      unless !!full == full #Boolean check
-        raise ArgumentError, 'Full option must be a boolean'
-      end
-      @options[:full] = full ? '1' : '0'
+      @options[:full] = booleanize 'Full', full
       self
     end
 
@@ -141,10 +130,7 @@ module Adknowledge
     # @param [Boolean] nocache
     # @return [Adknowledge::Performance] query object
     def nocache nocache
-      unless !!nocache == nocache #Boolean check
-        raise ArgumentError, 'NoCache option must be a boolean'
-      end
-      @options[:nocache] = nocache ? '1' : '0'
+      @options[:nocache] = booleanize 'NoCache', nocache
       self
     end
 
@@ -153,10 +139,7 @@ module Adknowledge
     # @param [Boolean] display_all
     # @return [Adknowledge::Performance] query object
     def display_all display_all
-      unless !!display_all == display_all #Boolean check
-        raise ArgumentError, "display_all option must be a boolean"
-      end
-      @options[:all] = display_all ? '1' : '0'
+      @options[:all] = booleanize 'DisplayAll', display_all
       self
     end
 
@@ -226,6 +209,21 @@ module Adknowledge
         b.response :oj
         b.adapter  Faraday.default_adapter
       end
+    end
+
+    def paramerize array, valid, error_str
+      array = array.map{|x| x.to_sym} # handle strings & symbols equally
+      unless (array - valid).empty?
+        raise ArgumentError, error_str
+      end
+      Hash[array.zip([1] * array.count)]
+    end
+
+    def booleanize name, value
+      unless !!value == value #Boolean check
+        raise ArgumentError, "#{name} option must be a boolean"
+      end
+      value ? '1' : '0'
     end
 
     def valid_pivot_values

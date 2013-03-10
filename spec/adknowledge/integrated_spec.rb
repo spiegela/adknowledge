@@ -238,7 +238,7 @@ describe Adknowledge::Integrated do
     context "single results" do
 
       before do
-        VCR.use_cassette :map_single_success, record: :once do
+        VCR.use_cassette :map_single_success do
           integrated.map!
         end
       end
@@ -319,7 +319,7 @@ describe Adknowledge::Integrated do
       end
 
       before do
-        VCR.use_cassette :map_multi_success, record: :once do
+        VCR.use_cassette :map_multi_success do
           integrated.map!
         end
       end

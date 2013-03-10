@@ -288,33 +288,53 @@ describe Adknowledge::Performance do
         limit(20)
     end
 
-    before do
-      VCR.use_cassette :performance, record: :once do
-        performance.records
+    context "succesful" do
+
+      let :records do
+        VCR.use_cassette :performance do
+          performance.records
+        end
+      end
+
+      subject do
+        records
+      end
+
+      it 'has results' do
+        expect(subject).to be_an Array
+      end
+
+      it 'has the correct dimensions' do
+        expect(subject.first).to have_key 'subid'
+        expect(subject.first).to have_key 'report_date'
+      end
+
+      it 'has the correct measures' do
+        expect(subject.first).to have_key 'paid_clicks'
+        expect(subject.first).to have_key 'revenue'
+      end
+
+      it 'has the correct count' do
+        expect(subject.size).to eql 20
+      end
+
+    end # successful
+
+    context "unsuccessful" do
+
+      let :error_str do
+        "The email/password or token provided does not match a " +
+          "valid account. Please try again."
+      end
+
+      it 'raises an exception' do
+        VCR.use_cassette :performance_errored do
+          expect{ performance.records }.
+            to raise_error(Adknowledge::Exception, error_str)
+        end
       end
     end
 
-    subject do
-      performance.records
-    end
+  end # #records
 
-    it 'has results' do
-      expect(subject).to be_an Array
-    end
-
-    it 'has the correct dimensions' do
-      expect(subject.first).to have_key 'subid'
-      expect(subject.first).to have_key 'report_date'
-    end
-
-    it 'has the correct measures' do
-      expect(subject.first).to have_key 'paid_clicks'
-      expect(subject.first).to have_key 'revenue'
-    end
-
-    it 'has the correct count' do
-      expect(subject.size).to eql 20
-    end
-
-  end
 end

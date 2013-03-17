@@ -76,7 +76,7 @@ module Adknowledge
     # @return [Array] mapped recipients
     def mapped_recipients
       return [] unless mapped?
-      recipients.select{|r| r['success']}
+      recipients.select{ |r| r['success'] == true }
     end
 
     # Return all errored recipients
@@ -84,7 +84,7 @@ module Adknowledge
     # @return [Array] errored recipients
     def errored_recipients
       return [] unless mapped?
-      recipients.select{|r| ! r['success']}
+      recipients.select{ |r| r['success'] == false }
     end
 
     # Set both click-domain and image-domain

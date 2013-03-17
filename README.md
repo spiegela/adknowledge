@@ -100,7 +100,6 @@ For more details see the specs, and [ADK documentation](https://publisher.adknow
 TODO
 ----
 There are several things currently unfinished:
-* Error handling when requests are unsuccessful
 * Options/convenience methods for parsing pivot query results
 * Add an end-point for "lookup" API
 

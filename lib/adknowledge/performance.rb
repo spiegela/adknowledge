@@ -188,7 +188,7 @@ module Adknowledge
       unless Adknowledge.token
         raise ArgumentError, 'Adknowledge token required to perform queries'
       end
-      results.body['data'] if results.body.has_key?('data')
+      results
     end
 
 
@@ -199,9 +199,14 @@ module Adknowledge
     end
 
     def results
-      @results ||= conn.get do |req|
+      raw_result = conn.get do |req|
         req.url '/performance.json', query_params
+      end.body
+
+      if raw_result['code'] > 200
+        raise Adknowledge::Exception, get_error_str(raw_result)
       end
+      @results ||= raw_result['data']
     end
 
     def conn
@@ -224,6 +229,12 @@ module Adknowledge
         raise ArgumentError, "#{name} option must be a boolean"
       end
       value ? '1' : '0'
+    end
+
+    def get_error_str raw_result
+      raw_result['messages'].map do |msg|
+        msg['message']
+      end.join(' ')
     end
 
     def valid_pivot_values

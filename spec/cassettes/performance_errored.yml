@@ -1,0 +1,43 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://api.publisher.adknowledge.com/performance.json?dimensions=subid,report_date&limit=20&measures=revenue,paid_clicks&product_guid=*&product_id=2&start_date=1&token=b6d8610998e883b3a460fd2fcf71ead4
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.8.6
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - ! '*/*'
+  response:
+    status:
+      code: 401
+      message: Authorization Required
+    headers:
+      Date:
+      - Sun, 10 Mar 2013 19:04:43 GMT
+      Server:
+      - Apache/2.2.12 (Linux/SUSE)
+      X-Powered-By:
+      - PHP/5.3.8-ZS5.5.0 ZendServer/5.0
+      Set-Cookie:
+      - ZDEDebuggerPresent=php,phtml,php3; path=/
+      Cache-Control:
+      - no-cache, must-revalidate
+      Expires:
+      - Mon, 26 Jul 1997 05:00:00 GMT
+      Content-Length:
+      - '178'
+      Content-Type:
+      - application/json
+    body:
+      encoding: US-ASCII
+      string: ! '{"status":0,"data":[],"messages":[{"type":0,"message":"The email\/password
+        or token provided does not match a valid account. Please try again."}],"errors":[],"code":401,"time":0}'
+    http_version: 
+  recorded_at: Sun, 10 Mar 2013 19:04:43 GMT
+recorded_with: VCR 2.4.0

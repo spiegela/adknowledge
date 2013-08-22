@@ -58,6 +58,13 @@ module Adknowledge
       @request = doc.to_xml(save_with: Nokogiri::XML::Node::SaveOptions::AS_XML).gsub("\n", '')
     end
 
+    # Set integer value for faradays timeout
+    #
+    # @param [Integer] integer value for timeout
+    # @return [Integer] stored integer value
+    def timeout= timeout
+      @timeout ||= timeout.to_i
+    end
 
     # Map content for specified recipients
     #
@@ -155,6 +162,10 @@ module Adknowledge
         req.headers = headers
         req.body    = post_body
         req.url API_VER
+        req.options = {
+          timeout: @timeout,
+          open_timeout: @timeout
+        } if @timeout
       end.body
     end
 

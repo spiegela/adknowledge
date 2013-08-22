@@ -375,4 +375,36 @@ describe Adknowledge::Integrated do
 
   end # after map
 
+  context "within map with timeout" do
+
+    context "timeout" do
+
+      before do
+        integrated = double('integrated') do
+          raise Faraday::Error::TimeoutError
+        end
+      end
+
+      let :integrated do
+        described_class.new domain: domain1,
+          subid: 101,
+          test: true,
+          recipients: email_hashes,
+          timeout: 0.1
+      end
+
+      context "#map!" do
+
+        it "raises an exception" do
+          expect {
+            integrated.to receive('map!').and raise_error Faraday::Error::TimeoutError
+          }
+        end
+
+      end # withing map!
+
+    end # within timeout
+
+  end # within map with timeout
+
 end # Adknowledge::Integrated
